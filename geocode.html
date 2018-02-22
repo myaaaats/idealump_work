@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geocoding service</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 500px;
+            width: 50%;
+        }
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 35%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="floating-panel">
+    <input id="address" type="textbox" value="東京">
+    <input id="submit" type="button" value="Geocode">
+</div>
+<div id="map"></div>
+<script src="apiキー"></script>
+<script>
+    function initMap() 
+    {
+        var myLatLng = {lat: 35.658581, lng: 139.745433};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: myLatLng
+        });
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+        });
+    }
+
+    function geocodeAddress(geocoder, resultsMap) 
+    {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) { 
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+    initMap();
+</script>
+</body>
+</html>
