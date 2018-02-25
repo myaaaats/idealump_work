@@ -1,37 +1,37 @@
 <?php
- 
+
     session_start();
- 
+
     //ログイン済みかを確認
     if (isset($_SESSION['USER'])) {
-        header('Location: top.php');
+        header('Location: topicsInfo.php');
         exit;
     }
- 
+
     //ログイン機能
     $message = '';
     if(isset($_POST['login'])){
         if ($_POST['email'] == 'test@test.jp' && $_POST['password'] == 'idealump'){ // ③
- 
+
             $_SESSION["USER"] = 'idealump';
             header("Location: top.php");
             exit;
         }
         else{
- 
+
             $message = 'メールアドレスかパスワードが間違っています。';
         }
     }
- 
+
 ?>
- 
+
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
 <head>
     <title>ログイン機能</title>
 </head>
- 
+
 <body>
 <h1>ログイン機能</h1>
 <p style="color: red"><?php echo $message ?></p>
@@ -44,6 +44,6 @@
     <br>
     <input type="submit" name="login" value="ログイン">
 </form>
- 
+
 </body>
 </html>
