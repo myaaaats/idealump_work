@@ -24,6 +24,15 @@ if (is_uploaded_file($tempfile)) {
 } else {
 //    echo "ファイルが選択されていません。";
 }
+echo '<form action="topicsInfoView.php">';
+echo '<input type="submit" value="view画面へ">';
+echo '</form>';
+echo '<form method="post" action="topicsInfo.php">';
+echo '<input type="submit" value="記事管理画面へ">';
+echo '</form>';
+echo '<form method="post" action="top.php">';
+echo '<input type="submit" value="新規追加">';
+echo '</form>';
 
 echo 'タイトル：';
 echo '<br>';
