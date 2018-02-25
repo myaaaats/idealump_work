@@ -17,12 +17,12 @@ $filename = 'image/' . $_FILES['img']['name'];
 
 if (is_uploaded_file($tempfile)) {
     if ( move_uploaded_file($tempfile , $filename )) {
-        echo $filename . "をアップロードしました。";
+//        echo $filename . "をアップロードしました。";
     } else {
-        echo "ファイルをアップロードできません。";
+//        echo "ファイルをアップロードできません。";
     }
 } else {
-    echo "ファイルが選択されていません。";
+//    echo "ファイルが選択されていません。";
 }
 
 echo 'タイトル：';
